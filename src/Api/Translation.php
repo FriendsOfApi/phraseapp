@@ -9,8 +9,9 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Api;
 
-use FAPI\PhraseApp\Resource\Api\Translation\TranslationDeleted;
-use FAPI\PhraseApp\Resource\Api\Translation\Translation as TranslationModel;
+use FAPI\PhraseApp\Model\Translation\TranslationDeleted;
+use FAPI\PhraseApp\Model\Translation\Translation as TranslationModel;
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use FAPI\PhraseApp\Exception;
 
@@ -24,29 +25,19 @@ class Translation extends HttpApi
      *
      * @param string $projectKey
      * @param string $id
-     * @param string $locale
+     * @param string $localeId
      *
      * @return TranslationModel|ResponseInterface
      *
      * @throws Exception
      */
-    public function get(string $projectKey, string $domain, string $id, string $locale)
+    public function get(string $projectKey, string $domain, string $id, string $localeId)
     {
         $response = $this->httpGet(sprintf(
-            '/api/v2/projects/%s/locales/%s/translations?q=tags:%s',
+            '/api/v2/projects/%s/translations?q=tags:%s',
             $projectKey,
-            $locale,
             $domain
         ));
-
-        foreach ($response as $translation) {
-            if ($translation['key']['name'] === "$domain::$id") {
-                return TranslationModel::createFromArray(
-
-                );
-                return new Message($key, $domain, $locale, substr($translation['content'], strlen($domain) + 2));
-            }
-        }
 
         if (!$this->hydrator) {
             return $response;
@@ -56,7 +47,24 @@ class Translation extends HttpApi
             $this->handleErrors($response);
         }
 
-        return $this->hydrator->hydrate($response, TranslationModel::class);
+        $body = $response->getBody()->__toString();
+        if (strpos($response->getHeaderLine('Content-Type'), 'application/json') !== 0) {
+            throw new Exception\HydrationException('The ModelHydrator cannot hydrate response with Content-Type:'.$response->getHeaderLine('Content-Type'));
+        }
+
+        $data = json_decode($body, true);
+        if (JSON_ERROR_NONE !== json_last_error()) {
+            throw new Exception\HydrationException(sprintf('Error (%d) when trying to json_decode response', json_last_error()));
+        }
+
+        foreach ($data as $translation) {
+            if ($translation['key']['name'] === $id && $translation['locale']['id'] === $localeId) {
+                $response = new Response(200, ['Content-Type' => 'application/json'], \json_encode($translation));
+                return $this->hydrator->hydrate($response, TranslationModel::class);
+            }
+        }
+
+        throw new Exception\Domain\NotFoundException();
     }
 
     /**

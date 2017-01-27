@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FAPI\PhraseApp\Resource\Api\Translation;
+namespace FAPI\PhraseApp\Model\Translation;
 
 use FAPI\PhraseApp\Model\CreatableFromArray;
 
@@ -16,37 +16,7 @@ class Translation implements CreatableFromArray
     /**
      * @var string
      */
-    private $type = '';
-
-    /**
-     * @var bool
-     */
-    private $translated = false;
-
-    /**
-     * @var bool
-     */
-    private $flagged = false;
-
-    /**
-     * @var string
-     */
-    private $status = '';
-
-    /**
-     * @var string
-     */
     private $translation = '';
-
-    /**
-     * @var int
-     */
-    private $revision = 0;
-
-    /**
-     * @var int
-     */
-    private $comments = 0;
 
     /**
      * @var string
@@ -56,22 +26,7 @@ class Translation implements CreatableFromArray
     /**
      * @var array
      */
-    private $author = [];
-
-    /**
-     * @var array
-     */
-    private $flagger = [];
-
-    /**
-     * @var array
-     */
     private $locale = [];
-
-    /**
-     * @var array
-     */
-    private $plurals = [];
 
     private function __construct()
     {
@@ -89,41 +44,17 @@ class Translation implements CreatableFromArray
         if (isset($data['id'])) {
             $self->setId($data['id']);
         }
-        if (isset($data['type'])) {
-            $self->setType($data['type']);
+        if (isset($data['content'])) {
+            $self->setTranslation($data['content']);
         }
-        if (isset($data['translated'])) {
-            $self->setTranslated($data['translated']);
+        if (isset($data['updated_at'])) {
+            $self->setModified($data['updated_at']);
         }
-        if (isset($data['flagged'])) {
-            $self->setFlagged($data['flagged']);
+        if (isset($data['locale']['id'])) {
+            $self->setLocaleId($data['locale']['id']);
         }
-        if (isset($data['status'])) {
-            $self->setStatus($data['status']);
-        }
-        if (isset($data['translation'])) {
-            $self->setTranslation($data['translation']);
-        }
-        if (isset($data['revision'])) {
-            $self->setRevision($data['revision']);
-        }
-        if (isset($data['comments'])) {
-            $self->setComments($data['comments']);
-        }
-        if (isset($data['modified'])) {
-            $self->setModified($data['modified']);
-        }
-        if (isset($data['author'])) {
-            $self->setAuthor($data['author']);
-        }
-        if (isset($data['flagger'])) {
-            $self->setFlagger($data['flagger']);
-        }
-        if (isset($data['locale'])) {
-            $self->setLocale($data['locale']);
-        }
-        if (isset($data['plurals'])) {
-            $self->setPlurals($data['plurals']);
+        if (isset($data['locale']['name'])) {
+            $self->setLocale($data['locale']['name']);
         }
 
         return $self;
@@ -148,70 +79,6 @@ class Translation implements CreatableFromArray
     /**
      * @return string
      */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string $type
-     */
-    private function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTranslated(): bool
-    {
-        return $this->translated;
-    }
-
-    /**
-     * @param bool $translated
-     */
-    private function setTranslated($translated)
-    {
-        $this->translated = (bool) $translated;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFlagged(): bool
-    {
-        return $this->flagged;
-    }
-
-    /**
-     * @param bool $flagged
-     */
-    private function setFlagged($flagged)
-    {
-        $this->flagged = (bool) $flagged;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param string $status
-     */
-    private function setStatus($status)
-    {
-        $this->status = $status;
-    }
-
-    /**
-     * @return string
-     */
     public function getTranslation(): string
     {
         return $this->translation;
@@ -223,38 +90,6 @@ class Translation implements CreatableFromArray
     private function setTranslation($translation)
     {
         $this->translation = $translation;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRevision(): int
-    {
-        return $this->revision;
-    }
-
-    /**
-     * @param int $revision
-     */
-    private function setRevision(int $revision)
-    {
-        $this->revision = $revision;
-    }
-
-    /**
-     * @return int
-     */
-    public function getComments(): int
-    {
-        return $this->comments;
-    }
-
-    /**
-     * @param int $comments
-     */
-    private function setComments(int $comments)
-    {
-        $this->comments = $comments;
     }
 
     /**
@@ -274,66 +109,31 @@ class Translation implements CreatableFromArray
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getAuthor(): array
+    public function getLocale()
     {
-        return $this->author;
+        return $this->locale['name'];
     }
 
     /**
-     * @param array $author
+     * @return string
      */
-    private function setAuthor($author)
+    public function getLocaleId()
     {
-        $this->author = $author;
+        return $this->locale['id'];
     }
 
     /**
-     * @return array
-     */
-    public function getFlagger(): array
-    {
-        return $this->flagger;
-    }
-
-    /**
-     * @param array $flagger
-     */
-    private function setFlagger($flagger)
-    {
-        $this->flagger = $flagger;
-    }
-
-    /**
-     * @return array
-     */
-    public function getLocale(): array
-    {
-        return $this->locale;
-    }
-
-    /**
-     * @param array $locale
+     * @param string $locale
      */
     private function setLocale($locale)
     {
-        $this->locale = $locale;
+        $this->locale['name'] = $locale;
     }
 
-    /**
-     * @return array
-     */
-    public function getPlurals(): array
+    private function setLocaleId($localeId)
     {
-        return $this->plurals;
-    }
-
-    /**
-     * @param array $plurals
-     */
-    private function setPlurals($plurals)
-    {
-        $this->plurals = $plurals;
+        $this->locale['id'] = $localeId;
     }
 }

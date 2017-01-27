@@ -13,6 +13,7 @@ use Http\Client\HttpClient;
 use Http\Client\Common\PluginClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\UriFactoryDiscovery;
+use Http\Message\Authentication\BasicAuth;
 use Http\Message\UriFactory;
 use Http\Client\Common\Plugin;
 
@@ -49,13 +50,19 @@ final class HttpClientConfigurator
     private $appendPlugins = [];
 
     /**
+     * @var string
+     */
+    private $token;
+
+    /**
      * @param HttpClient|null $httpClient
      * @param UriFactory|null $uriFactory
      */
-    public function __construct(HttpClient $httpClient = null, UriFactory $uriFactory = null)
+    public function __construct(HttpClient $httpClient = null, UriFactory $uriFactory = null, string $token)
     {
         $this->httpClient = $httpClient ?? HttpClientDiscovery::find();
         $this->uriFactory = $uriFactory ?? UriFactoryDiscovery::find();
+        $this->token = $token;
     }
 
     /**
@@ -65,6 +72,7 @@ final class HttpClientConfigurator
     {
         $plugins = $this->prependPlugins;
 
+        $plugins[] = new Plugin\AuthenticationPlugin(new BasicAuth($this->token, ''));
         $plugins[] = new Plugin\AddHostPlugin($this->uriFactory->createUri($this->endpoint));
         $plugins[] = new Plugin\HeaderDefaultsPlugin([
             'User-Agent' => 'FriendsOfApi/PhraseApp (https://github.com/FriendsOfApi/phraseapp)',

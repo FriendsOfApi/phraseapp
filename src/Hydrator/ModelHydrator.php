@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Hydrator;
 
+use FAPI\PhraseApp\Exception\Domain\NotFoundException;
 use FAPI\PhraseApp\Exception\HydrationException;
 use FAPI\PhraseApp\Model\CreatableFromArray;
 use Psr\Http\Message\ResponseInterface;
