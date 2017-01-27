@@ -13,6 +13,8 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * Do not hydrate to any object at all.
+ *
+ * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
 final class NoopHydrator implements Hydrator
 {

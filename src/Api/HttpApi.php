@@ -17,6 +17,9 @@ use FAPI\PhraseApp\Hydrator\Hydrator;
 use FAPI\PhraseApp\RequestBuilder;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
+ */
 abstract class HttpApi
 {
     /**

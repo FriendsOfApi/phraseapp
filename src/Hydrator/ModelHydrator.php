@@ -9,13 +9,14 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Hydrator;
 
-use FAPI\PhraseApp\Exception\Domain\NotFoundException;
 use FAPI\PhraseApp\Exception\HydrationException;
 use FAPI\PhraseApp\Model\CreatableFromArray;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Hydrate an HTTP response to domain object.
+ *
+ * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
 final class ModelHydrator implements Hydrator
 {

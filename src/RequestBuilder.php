@@ -15,6 +15,7 @@ use Http\Message\RequestFactory;
 use Psr\Http\Message\RequestInterface;
 
 /**
+ * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  * @internal This class should not be used outside of the API Client, it is not part of the BC promise.
  */
 final class RequestBuilder

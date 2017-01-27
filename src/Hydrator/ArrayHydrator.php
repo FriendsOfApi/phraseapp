@@ -14,6 +14,8 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * Hydrate an HTTP response to array.
+ *
+ * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
 final class ArrayHydrator implements Hydrator
 {

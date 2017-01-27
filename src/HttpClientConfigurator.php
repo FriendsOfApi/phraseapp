@@ -20,6 +20,7 @@ use Http\Client\Common\Plugin;
 /**
  * Configure an HTTP client.
  *
+ * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  * @internal This class should not be used outside of the API Client, it is not part of the BC promise.
  */
 final class HttpClientConfigurator
@@ -55,14 +56,15 @@ final class HttpClientConfigurator
     private $token;
 
     /**
+     * @param string $token
      * @param HttpClient|null $httpClient
      * @param UriFactory|null $uriFactory
      */
-    public function __construct(HttpClient $httpClient = null, UriFactory $uriFactory = null, string $token)
+    public function __construct(string $token, HttpClient $httpClient = null, UriFactory $uriFactory = null)
     {
+        $this->token = $token;
         $this->httpClient = $httpClient ?? HttpClientDiscovery::find();
         $this->uriFactory = $uriFactory ?? UriFactoryDiscovery::find();
-        $this->token = $token;
     }
 
     /**

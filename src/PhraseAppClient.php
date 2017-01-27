@@ -13,6 +13,9 @@ use FAPI\PhraseApp\Hydrator\ModelHydrator;
 use FAPI\PhraseApp\Hydrator\Hydrator;
 use Http\Client\HttpClient;
 
+/**
+ * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
+ */
 final class PhraseAppClient
 {
     /**
@@ -63,22 +66,6 @@ final class PhraseAppClient
         $httpClient = $httpClientConfigurator->createConfiguredClient();
 
         return new self($httpClient, $hydrator, $requestBuilder);
-    }
-
-    /**
-     * @return Api\Translation
-     */
-    public function translations(): Api\Translation
-    {
-        return new Api\Translation($this->httpClient, $this->hydrator, $this->requestBuilder);
-    }
-
-    /**
-     * @return Api\Asset
-     */
-    public function asset(): Api\Asset
-    {
-        return new Api\Asset($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
 
     /**
