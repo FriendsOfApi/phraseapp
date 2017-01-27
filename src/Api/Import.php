@@ -26,14 +26,14 @@ class Import extends HttpApi
      * @param string $filename
      * @param array  $params
      *
-     * @return string|ResponseInterface
-     *
      * @throws Exception
+     *
+     * @return string|ResponseInterface
      */
     public function import(string $projectKey, string $ext, string $filename, array $params)
     {
         if (!file_exists($filename)) {
-            throw new Exception\InvalidArgumentException('file ' . $filename . ' not found');
+            throw new Exception\InvalidArgumentException('file '.$filename.' not found');
         }
 
         if (!isset($params['locale_id'])) {
@@ -51,7 +51,7 @@ class Import extends HttpApi
         }
 
         $response = $this->httpPostRaw(sprintf('/api/v2/projects/%s/uploads', $projectKey), $postData, [
-            'Content-Type' => 'application/x-www-form-urlencoded'
+            'Content-Type' => 'application/x-www-form-urlencoded',
         ]);
 
         if (!$this->hydrator) {

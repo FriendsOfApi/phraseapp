@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Api;
 
 use FAPI\PhraseApp\Exception;
-use FAPI\PhraseApp\Model\Export\Exported;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -27,9 +26,9 @@ class Export extends HttpApi
      * @param string $ext
      * @param array  $params
      *
-     * @return string|ResponseInterface
-     *
      * @throws Exception
+     *
+     * @return string|ResponseInterface
      */
     public function locale(string $projectKey, string $localeId, string $ext, array $params)
     {

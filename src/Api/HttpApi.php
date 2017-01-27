@@ -11,10 +11,10 @@ namespace FAPI\PhraseApp\Api;
 
 use FAPI\PhraseApp\Exception\Domain as DomainExceptions;
 use FAPI\PhraseApp\Exception\DomainException;
-use FAPI\PhraseApp\Hydrator\NoopHydrator;
-use Http\Client\HttpClient;
 use FAPI\PhraseApp\Hydrator\Hydrator;
+use FAPI\PhraseApp\Hydrator\NoopHydrator;
 use FAPI\PhraseApp\RequestBuilder;
+use Http\Client\HttpClient;
 use Psr\Http\Message\ResponseInterface;
 
 /**

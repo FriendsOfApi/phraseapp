@@ -16,6 +16,7 @@ use Psr\Http\Message\RequestInterface;
 
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
+ *
  * @internal This class should not be used outside of the API Client, it is not part of the BC promise.
  */
 final class RequestBuilder
@@ -28,6 +29,7 @@ final class RequestBuilder
      * @var MultipartStreamBuilder
      */
     private $multipartStreamBuilder;
+
     /**
      * @param RequestFactory         $requestFactory
      * @param MultipartStreamBuilder $multipartStreamBuilder
@@ -39,6 +41,7 @@ final class RequestBuilder
         $this->requestFactory = $requestFactory ?: MessageFactoryDiscovery::find();
         $this->multipartStreamBuilder = $multipartStreamBuilder ?: new MultipartStreamBuilder();
     }
+
     /**
      * Creates a new PSR-7 request.
      *
@@ -72,6 +75,7 @@ final class RequestBuilder
         $boundary = $this->multipartStreamBuilder->getBoundary();
         $headers['Content-Type'] = 'multipart/form-data; boundary='.$boundary;
         $this->multipartStreamBuilder->reset();
+
         return $this->requestFactory->createRequest($method, $uri, $headers, $multipartStream);
     }
 }
