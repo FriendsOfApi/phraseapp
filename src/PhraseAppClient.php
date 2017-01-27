@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp;
 
-use FAPI\PhraseApp\Hydrator\ModelHydrator;
 use FAPI\PhraseApp\Hydrator\Hydrator;
+use FAPI\PhraseApp\Hydrator\ModelHydrator;
 use Http\Client\HttpClient;
 
 /**

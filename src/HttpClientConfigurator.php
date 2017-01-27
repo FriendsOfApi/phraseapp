@@ -9,18 +9,19 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp;
 
-use Http\Client\HttpClient;
+use Http\Client\Common\Plugin;
 use Http\Client\Common\PluginClient;
+use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\UriFactoryDiscovery;
 use Http\Message\Authentication\BasicAuth;
 use Http\Message\UriFactory;
-use Http\Client\Common\Plugin;
 
 /**
  * Configure an HTTP client.
  *
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
+ *
  * @internal This class should not be used outside of the API Client, it is not part of the BC promise.
  */
 final class HttpClientConfigurator
@@ -56,7 +57,7 @@ final class HttpClientConfigurator
     private $token;
 
     /**
-     * @param string $token
+     * @param string          $token
      * @param HttpClient|null $httpClient
      * @param UriFactory|null $uriFactory
      */
