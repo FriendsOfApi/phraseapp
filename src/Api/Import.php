@@ -41,7 +41,7 @@ class Import extends HttpApi
         }
 
         $postData = [
-            ['name' => 'file', 'content' => $filename, 'filename' => basename($filename)],
+            ['name' => 'file', 'content' => file_get_contents($filename), 'filename' => basename($filename)],
             ['name' => 'file_format', 'content' => $ext],
             ['name' => 'locale_id', 'content' => $params['locale_id']],
         ];
