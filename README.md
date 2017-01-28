@@ -14,11 +14,21 @@ $ composer require friendsofapi/phraseapp
 
 ```php
 $apiClient = new PhraseAppClient();
-$response = $apiClient->translations()->show('project_key', 'hello_world', 'sv');
-echo $response->getTranslation(); // "Hej världen"
+
+$response = $apiClient->import()->import($projectId, 'symfony_xliff', $fileName, [
+    'locale_id' => $localeId,
+    'tags' => $domain,
+]);
+
+$response = $this->client->export()->locale($projectId, $localeId, 'symfony_xliff', [
+    'tag' => $domain
+]);
 ```
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
+## Contribute
+
+Do you want to make a change? Pull requests are welcome.
