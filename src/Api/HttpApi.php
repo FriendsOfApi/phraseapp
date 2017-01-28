@@ -150,27 +150,19 @@ abstract class HttpApi
      */
     protected function handleErrors(ResponseInterface $response)
     {
-        $body = $response->getBody()->__toString();
-
-        $content = json_decode($body, true);
-        $message = '';
-        if (JSON_ERROR_NONE === json_last_error()) {
-            $message = $content['error'];
-        }
-
         switch ($response->getStatusCode()) {
             case 401:
-                throw new DomainExceptions\InvalidApiKeyException($message);
+                throw new DomainExceptions\InvalidApiKeyException();
                 break;
             case 403:
-                throw new DomainExceptions\InsufficientPrivilegesException($message);
+                throw new DomainExceptions\InsufficientPrivilegesException();
                 break;
             case 404:
-                throw new DomainExceptions\NotFoundException($message);
+                throw new DomainExceptions\NotFoundException();
                 break;
 
             default:
-                throw new DomainExceptions\UnknownErrorException($message);
+                throw new DomainExceptions\UnknownErrorException();
                 break;
         }
     }
