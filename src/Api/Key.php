@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Api;
 
 use FAPI\PhraseApp\Model\Key\KeyCreated;
+use FAPI\PhraseApp\Model\Key\KeyDeleted;
 use FAPI\PhraseApp\Model\Key\KeySearchResults;
 use Psr\Http\Message\ResponseInterface;
 
@@ -88,5 +89,24 @@ class Key extends HttpApi
         }
 
         return $this->hydrator->hydrate($response, KeySearchResults::class);
+    }
+
+    /**
+     * Delete a key
+     *
+     * @param string    $projectKey
+     * @param string    $keyId
+     *
+     * @return bool|ResponseInterface
+     */
+    public function delete(string $projectKey, string $keyId)
+    {
+        $response = $this->httpDelete(sprintf('/api/v2/projects/%s/keys/%s', $projectKey, $keyId));
+
+        if ($response->getStatusCode() !== 204) {
+            $this->handleErrors($response);
+        }
+
+        return true;
     }
 }

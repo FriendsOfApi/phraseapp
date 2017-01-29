@@ -168,6 +168,7 @@ abstract class HttpApi
      */
     protected function handleErrors(ResponseInterface $response)
     {
+        var_dump($response->getStatusCode()); die;
         switch ($response->getStatusCode()) {
             case 401:
                 throw new DomainExceptions\InvalidApiKeyException('Invalid API key');
