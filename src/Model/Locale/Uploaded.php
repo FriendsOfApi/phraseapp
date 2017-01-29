@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace FAPI\PhraseApp\Model\Import;
+namespace FAPI\PhraseApp\Model\Locale;
 
 use FAPI\PhraseApp\Model\CreatableFromArray;
 
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class Imported implements CreatableFromArray
+class Uploaded implements CreatableFromArray
 {
     /**
      * @var string
@@ -43,7 +43,7 @@ class Imported implements CreatableFromArray
     /**
      * @param array $data
      *
-     * @return Imported
+     * @return Uploaded
      */
     public static function createFromArray(array $data)
     {

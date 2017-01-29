@@ -15,11 +15,10 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class Export extends HttpApi
+class Locale extends HttpApi
 {
     /**
-     * Export a locale.
-     * {@link https://localise.biz/api/docs/export/exportlocale}.
+     * Download a locale
      *
      * @param string $projectKey
      * @param string $localeId
@@ -30,7 +29,7 @@ class Export extends HttpApi
      *
      * @return string|ResponseInterface
      */
-    public function locale(string $projectKey, string $localeId, string $ext, array $params)
+    public function download(string $projectKey, string $localeId, string $ext, array $params)
     {
         $params['file_format'] = $ext;
 
