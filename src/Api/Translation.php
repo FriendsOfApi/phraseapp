@@ -26,6 +26,7 @@ class Translation extends HttpApi
      * @param string    $projectKey
      * @param string    $localeId
      * @param array     $params
+     *
      * @return mixed|ResponseInterface
      */
     public function indexLocale(string $projectKey, string $localeId, array $params = [])
@@ -50,6 +51,7 @@ class Translation extends HttpApi
      * @param string    $keyId
      * @param string    $content
      * @param array     $params
+     *
      * @return mixed|ResponseInterface
      */
     public function create(string $projectKey, string $localeId, string $keyId, string $content, array $params = [])
@@ -78,6 +80,7 @@ class Translation extends HttpApi
      * @param string    $translationId
      * @param string    $content
      * @param array     $params
+     *
      * @return mixed|ResponseInterface
      */
     public function update(string $projectKey, string $translationId, string $content, array $params = [])
@@ -103,6 +106,7 @@ class Translation extends HttpApi
      * @param string    $projectKey
      * @param string    $keyId
      * @param array     $params
+     *
      * @return mixed|ResponseInterface
      */
     public function indexKey(string $projectKey, string $keyId, array $params = [])
