@@ -33,6 +33,7 @@ class Locale implements CreatableFromArray
 
     /**
      * @param array $data
+     *
      * @return Locale
      */
     public static function createFromArray(array $data)

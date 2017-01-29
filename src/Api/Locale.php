@@ -18,12 +18,12 @@ use Psr\Http\Message\ResponseInterface;
 class Locale extends HttpApi
 {
     /**
-     * Download a locale
+     * Download a locale.
      *
      * @param string $projectKey
      * @param string $localeId
      * @param string $ext
-     * @param array  $params
+     * @param array $params
      *
      * @throws Exception
      *

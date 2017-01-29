@@ -58,6 +58,7 @@ class KeySearchResult implements CreatableFromArray
 
     /**
      * @param array $data
+     *
      * @return KeySearchResult
      */
     public static function createFromArray(array $data)

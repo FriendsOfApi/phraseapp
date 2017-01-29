@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Api;
 
 use FAPI\PhraseApp\Model\Key\KeyCreated;
-use FAPI\PhraseApp\Model\Key\KeyDeleted;
 use FAPI\PhraseApp\Model\Key\KeySearchResults;
 use Psr\Http\Message\ResponseInterface;
 
@@ -20,11 +19,11 @@ use Psr\Http\Message\ResponseInterface;
 class Key extends HttpApi
 {
     /**
-     * Create a new key
+     * Create a new key.
      *
-     * @param string    $projectKey
-     * @param string    $localeId
-     * @param array     $params
+     * @param string $projectKey
+     * @param string $localeId
+     * @param array $params
      *
      * @return mixed|ResponseInterface
      */
@@ -46,11 +45,11 @@ class Key extends HttpApi
     }
 
     /**
-     * Search keys
+     * Search keys.
      *
-     * @param string    $projectKey
-     * @param string    $localeId
-     * @param array     $params
+     * @param string $projectKey
+     * @param string $localeId
+     * @param array $params
      *
      * @return mixed|ResponseInterface
      */
@@ -59,15 +58,15 @@ class Key extends HttpApi
         $q = '';
 
         if (isset($params['tags'])) {
-            $q .= 'tags:' . $params['tags'] . ' ';
+            $q .= 'tags:'.$params['tags'].' ';
         }
 
         if (isset($params['name'])) {
-            $q .= 'name:' . $params['name'] . ' ';
+            $q .= 'name:'.$params['name'].' ';
         }
 
         if (isset($params['ids'])) {
-            $q .= 'ids:' . $params['ids'] . ' ';
+            $q .= 'ids:'.$params['ids'].' ';
         }
 
         $params = [
@@ -92,10 +91,10 @@ class Key extends HttpApi
     }
 
     /**
-     * Delete a key
+     * Delete a key.
      *
-     * @param string    $projectKey
-     * @param string    $keyId
+     * @param string $projectKey
+     * @param string $keyId
      *
      * @return bool|ResponseInterface
      */

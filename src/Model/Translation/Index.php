@@ -21,6 +21,11 @@ class Index implements CreatableFromArray
      */
     private $translations = [];
 
+    /**
+     * @param array $data
+     *
+     * @return Index
+     */
     public static function createFromArray(array $data)
     {
         $self = new self();

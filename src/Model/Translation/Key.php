@@ -43,6 +43,7 @@ class Key implements CreatableFromArray
 
     /**
      * @param array $data
+     *
      * @return Key
      */
     public static function createFromArray(array $data)

@@ -24,7 +24,7 @@ class Upload extends HttpApi
      * @param string $projectKey
      * @param string $ext
      * @param string $filename
-     * @param array  $params
+     * @param array $params
      *
      * @throws Exception
      *

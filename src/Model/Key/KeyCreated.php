@@ -68,6 +68,7 @@ class KeyCreated implements CreatableFromArray
 
     /**
      * @param array $data
+     *
      * @return KeyCreated
      */
     public static function createFromArray(array $data)

@@ -78,6 +78,7 @@ class TranslationCreated implements CreatableFromArray
 
     /**
      * @param array $data
+     *
      * @return TranslationCreated
      */
     public static function createFromArray(array $data)

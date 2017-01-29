@@ -33,6 +33,7 @@ class User implements CreatableFromArray
 
     /**
      * @param array $data
+     * 
      * @return User
      */
     public static function createFromArray(array $data)

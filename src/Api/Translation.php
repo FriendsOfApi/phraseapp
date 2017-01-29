@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Api;
 
-use FAPI\PhraseApp\Model\Translation\KeyIndex;
 use FAPI\PhraseApp\Model\Translation\Index;
 use FAPI\PhraseApp\Model\Translation\TranslationCreated;
 use FAPI\PhraseApp\Model\Translation\TranslationUpdated;
@@ -21,11 +20,11 @@ use Psr\Http\Message\ResponseInterface;
 class Translation extends HttpApi
 {
     /**
-     * Index a locale
+     * Index a locale.
      *
-     * @param string    $projectKey
-     * @param string    $localeId
-     * @param array     $params
+     * @param string $projectKey
+     * @param string $localeId
+     * @param array $params
      *
      * @return mixed|ResponseInterface
      */
@@ -45,12 +44,12 @@ class Translation extends HttpApi
     }
 
     /**
-     * Create a translation
+     * Create a translation.
      *
-     * @param string    $projectKey
-     * @param string    $keyId
-     * @param string    $content
-     * @param array     $params
+     * @param string $projectKey
+     * @param string $keyId
+     * @param string $content
+     * @param array $params
      *
      * @return mixed|ResponseInterface
      */
@@ -74,12 +73,12 @@ class Translation extends HttpApi
     }
 
     /**
-     * Update a translation
+     * Update a translation.
      *
-     * @param string    $projectKey
-     * @param string    $translationId
-     * @param string    $content
-     * @param array     $params
+     * @param string $projectKey
+     * @param string $translationId
+     * @param string $content
+     * @param array $params
      *
      * @return mixed|ResponseInterface
      */
@@ -101,11 +100,11 @@ class Translation extends HttpApi
     }
 
     /**
-     * List translations for a specific key
+     * List translations for a specific key.
      *
-     * @param string    $projectKey
-     * @param string    $keyId
-     * @param array     $params
+     * @param string $projectKey
+     * @param string $keyId
+     * @param array $params
      *
      * @return mixed|ResponseInterface
      */
