@@ -82,4 +82,9 @@ final class PhraseAppClient
     {
         return new Api\Translation($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
+
+    public function key(): Api\Key
+    {
+        return new Api\Key($this->httpClient, $this->hydrator, $this->requestBuilder);
+    }
 }
