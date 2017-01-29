@@ -160,6 +160,13 @@ abstract class HttpApi
             case 404:
                 throw new DomainExceptions\NotFoundException('Not found');
                 break;
+            case 422:
+                $content = json_decode($response->getBody());
+                $message = 'Unprocessable entity';
+                if (JSON_ERROR_NONE === json_last_error()) {
+                    $message = $content['errors']['message'];
+                }
+                throw new DomainExceptions\UnprocessableEntityException($message);
             case 429:
                 throw new DomainExceptions\RateLimitExceededException('Rate limit exceeded');
             default:

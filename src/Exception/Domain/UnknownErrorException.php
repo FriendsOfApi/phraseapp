@@ -11,6 +11,6 @@ namespace FAPI\PhraseApp\Exception\Domain;
 
 use FAPI\PhraseApp\Exception\DomainException;
 
-final class UnknownErrorException extends \Exception implements DomainException
+final class UnknownErrorException extends \RuntimeException implements DomainException
 {
 }

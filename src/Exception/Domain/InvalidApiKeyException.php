@@ -11,6 +11,6 @@ namespace FAPI\PhraseApp\Exception\Domain;
 
 use FAPI\PhraseApp\Exception\DomainException;
 
-final class InvalidApiKeyException extends \Exception implements DomainException
+final class InvalidApiKeyException extends \RuntimeException implements DomainException
 {
 }
