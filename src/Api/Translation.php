@@ -111,7 +111,7 @@ class Translation extends HttpApi
     public function indexKey(string $projectKey, string $keyId, array $params = [])
     {
         if (isset($params['tags'])) {
-            $params['q'] = 'tags:' . $params['tags'];
+            $params['q'] = 'tags:'.$params['tags'];
             unset($params['tags']);
         }
 
