@@ -152,17 +152,18 @@ abstract class HttpApi
     {
         switch ($response->getStatusCode()) {
             case 401:
-                throw new DomainExceptions\InvalidApiKeyException();
+                throw new DomainExceptions\InvalidApiKeyException('Invalid API key');
                 break;
             case 403:
-                throw new DomainExceptions\InsufficientPrivilegesException();
+                throw new DomainExceptions\InsufficientPrivilegesException('Insufficient Privileges');
                 break;
             case 404:
-                throw new DomainExceptions\NotFoundException();
+                throw new DomainExceptions\NotFoundException('Not found');
                 break;
-
+            case 429:
+                throw new DomainExceptions\RateLimitExceededException('Rate limit exceeded');
             default:
-                throw new DomainExceptions\UnknownErrorException();
+                throw new DomainExceptions\UnknownErrorException('Unknown error');
                 break;
         }
     }
