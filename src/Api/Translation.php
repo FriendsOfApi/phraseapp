@@ -9,7 +9,8 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Api;
 
-use FAPI\PhraseApp\Model\Translation\LocaleIndex;
+use FAPI\PhraseApp\Model\Translation\KeyIndex;
+use FAPI\PhraseApp\Model\Translation\Index;
 use FAPI\PhraseApp\Model\Translation\TranslationCreated;
 use FAPI\PhraseApp\Model\Translation\TranslationUpdated;
 use Psr\Http\Message\ResponseInterface;
@@ -39,7 +40,7 @@ class Translation extends HttpApi
             $this->handleErrors($response);
         }
 
-        return $this->hydrator->hydrate($response, LocaleIndex::class);
+        return $this->hydrator->hydrate($response, Index::class);
     }
 
     /**
@@ -94,5 +95,33 @@ class Translation extends HttpApi
         }
 
         return $this->hydrator->hydrate($response, TranslationUpdated::class);
+    }
+
+    /**
+     * List translations for a specific key
+     *
+     * @param string    $projectKey
+     * @param string    $keyId
+     * @param array     $params
+     * @return mixed|ResponseInterface
+     */
+    public function indexKey(string $projectKey, string $keyId, array $params = [])
+    {
+        if (isset($params['tags'])) {
+            $params['q'] = 'tags:' . $params['tags'];
+            unset($params['tags']);
+        }
+
+        $response = $this->httpGet(sprintf('/api/v2/projects/%s/keys/%s/translations', $projectKey, $keyId), $params);
+
+        if (!$this->hydrator) {
+            return $response;
+        }
+
+        if ($response->getStatusCode() !== 200 && $response->getStatusCode() !== 201) {
+            $this->handleErrors($response);
+        }
+
+        return $this->hydrator->hydrate($response, Index::class);
     }
 }

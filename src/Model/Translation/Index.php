@@ -14,7 +14,7 @@ use FAPI\PhraseApp\Model\CreatableFromArray;
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class LocaleIndex implements CreatableFromArray
+class Index implements CreatableFromArray
 {
     /**
      * @var Translation[]
