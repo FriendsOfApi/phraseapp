@@ -25,7 +25,7 @@ class Key extends HttpApi
      * @param array     $params
      * @return mixed|ResponseInterface
      */
-    public function create(string $projectKey, string $name, array $params)
+    public function create(string $projectKey, string $name, array $params = [])
     {
         $params['name'] = $name;
 

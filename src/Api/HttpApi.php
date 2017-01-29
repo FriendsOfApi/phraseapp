@@ -140,6 +140,24 @@ abstract class HttpApi
     }
 
     /**
+     * Send a PATCH request with json encoded data.
+     *
+     * @param string       $path           Request path
+     * @param array|string $body           Request body
+     * @param array        $requestHeaders Request headers
+     *
+     * @return ResponseInterface
+     */
+    protected function httpPatch(string $path, $body, array $requestHeaders = []): ResponseInterface
+    {
+        $requestHeaders['Content-Type'] = 'application/json';
+
+        return $response = $this->httpClient->sendRequest(
+            $this->requestBuilder->create('PATCH', $path, $requestHeaders, json_encode($body))
+        );
+    }
+
+    /**
      * Handle HTTP errors.
      *
      * Call is controlled by the specific API methods.

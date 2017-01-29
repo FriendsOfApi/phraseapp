@@ -29,7 +29,7 @@ class Locale extends HttpApi
      *
      * @return string|ResponseInterface
      */
-    public function download(string $projectKey, string $localeId, string $ext, array $params)
+    public function download(string $projectKey, string $localeId, string $ext, array $params = [])
     {
         $params['file_format'] = $ext;
 

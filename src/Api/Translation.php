@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Api;
 
-use FAPI\PhraseApp\Model\Locale\Uploaded;
 use FAPI\PhraseApp\Model\Translation\LocaleIndex;
 use FAPI\PhraseApp\Model\Translation\TranslationCreated;
+use FAPI\PhraseApp\Model\Translation\TranslationUpdated;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -27,7 +27,7 @@ class Translation extends HttpApi
      * @param array     $params
      * @return mixed|ResponseInterface
      */
-    public function indexLocale(string $projectKey, string $localeId, array $params)
+    public function indexLocale(string $projectKey, string $localeId, array $params = [])
     {
         $response = $this->httpGet(sprintf('/api/v2/projects/%s/locales/%s/translations', $projectKey, $localeId), $params);
 
@@ -51,8 +51,9 @@ class Translation extends HttpApi
      * @param array     $params
      * @return mixed|ResponseInterface
      */
-    public function create(string $projectKey, string $keyId, string $content, array $params)
+    public function create(string $projectKey, string $localeId, string $keyId, string $content, array $params = [])
     {
+        $params['locale_id'] = $localeId;
         $params['key_id'] = $keyId;
         $params['content'] = $content;
 
@@ -67,5 +68,31 @@ class Translation extends HttpApi
         }
 
         return $this->hydrator->hydrate($response, TranslationCreated::class);
+    }
+
+    /**
+     * Update a translation
+     *
+     * @param string    $projectKey
+     * @param string    $translationId
+     * @param string    $content
+     * @param array     $params
+     * @return mixed|ResponseInterface
+     */
+    public function update(string $projectKey, string $translationId, string $content, array $params = [])
+    {
+        $params['content'] = $content;
+
+        $response = $this->httpPatch(sprintf('/api/v2/projects/%s/translations/%s', $projectKey, $translationId), $params);
+
+        if (!$this->hydrator) {
+            return $response;
+        }
+
+        if ($response->getStatusCode() !== 200 && $response->getStatusCode() !== 201) {
+            $this->handleErrors($response);
+        }
+
+        return $this->hydrator->hydrate($response, TranslationUpdated::class);
     }
 }
