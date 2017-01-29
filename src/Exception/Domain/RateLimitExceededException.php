@@ -11,6 +11,6 @@ namespace FAPI\PhraseApp\Exception\Domain;
 
 use FAPI\PhraseApp\Exception\DomainException;
 
-final class InsufficientPrivilegesException extends \RuntimeException implements DomainException
+final class RateLimitExceededException extends \RuntimeException implements DomainException
 {
 }

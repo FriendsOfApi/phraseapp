@@ -10,16 +10,16 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Api;
 
 use FAPI\PhraseApp\Exception;
-use FAPI\PhraseApp\Model\Import\Imported;
+use FAPI\PhraseApp\Model\Locale\Uploaded;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class Import extends HttpApi
+class Upload extends HttpApi
 {
     /**
-     * Import a locale.
+     * Upload a locale.
      *
      * @param string $projectKey
      * @param string $ext
@@ -30,7 +30,7 @@ class Import extends HttpApi
      *
      * @return string|ResponseInterface
      */
-    public function import(string $projectKey, string $ext, string $filename, array $params)
+    public function upload(string $projectKey, string $ext, string $filename, array $params)
     {
         if (!file_exists($filename)) {
             throw new Exception\InvalidArgumentException('file '.$filename.' not found');
@@ -62,6 +62,6 @@ class Import extends HttpApi
             $this->handleErrors($response);
         }
 
-        return $this->hydrator->hydrate($response, Imported::class);
+        return $this->hydrator->hydrate($response, Uploaded::class);
     }
 }

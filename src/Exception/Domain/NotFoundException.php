@@ -11,6 +11,6 @@ namespace FAPI\PhraseApp\Exception\Domain;
 
 use FAPI\PhraseApp\Exception\DomainException;
 
-final class NotFoundException extends \Exception implements DomainException
+final class NotFoundException extends \RuntimeException implements DomainException
 {
 }

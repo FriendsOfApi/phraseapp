@@ -68,19 +68,23 @@ final class PhraseAppClient
         return new self($httpClient, $hydrator, $requestBuilder);
     }
 
-    /**
-     * @return Api\Import
-     */
-    public function import(): Api\Import
+    public function upload(): Api\Upload
     {
-        return new Api\Import($this->httpClient, $this->hydrator, $this->requestBuilder);
+        return new Api\Upload($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
 
-    /**
-     * @return Api\Export
-     */
-    public function export(): Api\Export
+    public function locale(): Api\Locale
     {
-        return new Api\Export($this->httpClient, $this->hydrator, $this->requestBuilder);
+        return new Api\Locale($this->httpClient, $this->hydrator, $this->requestBuilder);
+    }
+
+    public function translation(): Api\Translation
+    {
+        return new Api\Translation($this->httpClient, $this->hydrator, $this->requestBuilder);
+    }
+
+    public function key(): Api\Key
+    {
+        return new Api\Key($this->httpClient, $this->hydrator, $this->requestBuilder);
     }
 }

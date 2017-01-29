@@ -140,6 +140,24 @@ abstract class HttpApi
     }
 
     /**
+     * Send a PATCH request with json encoded data.
+     *
+     * @param string       $path           Request path
+     * @param array|string $body           Request body
+     * @param array        $requestHeaders Request headers
+     *
+     * @return ResponseInterface
+     */
+    protected function httpPatch(string $path, $body, array $requestHeaders = []): ResponseInterface
+    {
+        $requestHeaders['Content-Type'] = 'application/json';
+
+        return $response = $this->httpClient->sendRequest(
+            $this->requestBuilder->create('PATCH', $path, $requestHeaders, json_encode($body))
+        );
+    }
+
+    /**
      * Handle HTTP errors.
      *
      * Call is controlled by the specific API methods.
@@ -152,17 +170,20 @@ abstract class HttpApi
     {
         switch ($response->getStatusCode()) {
             case 401:
-                throw new DomainExceptions\InvalidApiKeyException();
+                throw new DomainExceptions\InvalidApiKeyException('Invalid API key');
                 break;
             case 403:
-                throw new DomainExceptions\InsufficientPrivilegesException();
+                throw new DomainExceptions\InsufficientPrivilegesException('Insufficient Privileges');
                 break;
             case 404:
-                throw new DomainExceptions\NotFoundException();
+                throw new DomainExceptions\NotFoundException('Not found');
                 break;
-
+            case 422:
+                throw new DomainExceptions\UnprocessableEntityException('Unprocessable entity');
+            case 429:
+                throw new DomainExceptions\RateLimitExceededException('Rate limit exceeded');
             default:
-                throw new DomainExceptions\UnknownErrorException();
+                throw new DomainExceptions\UnknownErrorException('Unknown error');
                 break;
         }
     }
