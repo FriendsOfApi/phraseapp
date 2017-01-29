@@ -23,7 +23,7 @@ class Key extends HttpApi
      *
      * @param string $projectKey
      * @param string $localeId
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed|ResponseInterface
      */
@@ -49,7 +49,7 @@ class Key extends HttpApi
      *
      * @param string $projectKey
      * @param string $localeId
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed|ResponseInterface
      */

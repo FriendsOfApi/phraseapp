@@ -33,7 +33,7 @@ class User implements CreatableFromArray
 
     /**
      * @param array $data
-     * 
+     *
      * @return User
      */
     public static function createFromArray(array $data)
@@ -70,7 +70,7 @@ class User implements CreatableFromArray
 
     private function setUsername(string $username)
     {
-        $this->username= $username;
+        $this->username = $username;
     }
 
     public function getName(): string

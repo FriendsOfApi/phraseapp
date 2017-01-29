@@ -23,7 +23,7 @@ class Locale extends HttpApi
      * @param string $projectKey
      * @param string $localeId
      * @param string $ext
-     * @param array $params
+     * @param array  $params
      *
      * @throws Exception
      *

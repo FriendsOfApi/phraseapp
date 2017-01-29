@@ -24,7 +24,7 @@ class Translation extends HttpApi
      *
      * @param string $projectKey
      * @param string $localeId
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed|ResponseInterface
      */
@@ -49,7 +49,7 @@ class Translation extends HttpApi
      * @param string $projectKey
      * @param string $keyId
      * @param string $content
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed|ResponseInterface
      */
@@ -78,7 +78,7 @@ class Translation extends HttpApi
      * @param string $projectKey
      * @param string $translationId
      * @param string $content
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed|ResponseInterface
      */
@@ -104,7 +104,7 @@ class Translation extends HttpApi
      *
      * @param string $projectKey
      * @param string $keyId
-     * @param array $params
+     * @param array  $params
      *
      * @return mixed|ResponseInterface
      */
