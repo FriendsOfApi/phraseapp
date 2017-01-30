@@ -10,11 +10,12 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Model\Key;
 
 use FAPI\PhraseApp\Model\CreatableFromArray;
+use Traversable;
 
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class KeySearchResults implements CreatableFromArray
+class KeySearchResults implements CreatableFromArray, \IteratorAggregate
 {
     /**
      * @var KeySearchResult[]
@@ -38,11 +39,11 @@ class KeySearchResults implements CreatableFromArray
     }
 
     /**
-     * @return KeySearchResult[]
+     * @return KeySearchResult[]|\Iterator
      */
-    public function getSearchResults(): array
+    public function getIterator(): \Iterator
     {
-        return $this->searchResults;
+        return new \ArrayIterator($this->searchResults);
     }
 
     private function addSearchResult(KeySearchResult $searchResult)

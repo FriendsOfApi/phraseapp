@@ -10,11 +10,12 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Model\Translation;
 
 use FAPI\PhraseApp\Model\CreatableFromArray;
+use Traversable;
 
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class Index implements CreatableFromArray
+class Index implements CreatableFromArray, \IteratorAggregate
 {
     /**
      * @var Translation[]
@@ -38,11 +39,11 @@ class Index implements CreatableFromArray
     }
 
     /**
-     * @return Translation[]
+     * @return Translation[]|\Iterator
      */
-    public function getTranslations(): array
+    public function getIterator(): \Iterator
     {
-        return $this->translations;
+        return new \ArrayIterator($this->translations);
     }
 
     private function addTranslation(Translation $translation)

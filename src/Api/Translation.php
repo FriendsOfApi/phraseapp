@@ -30,6 +30,11 @@ class Translation extends HttpApi
      */
     public function indexLocale(string $projectKey, string $localeId, array $params = [])
     {
+        if (isset($params['tags'])) {
+            $params['q'] = 'tags:'.$params['tags'];
+            unset($params['tags']);
+        }
+
         $response = $this->httpGet(sprintf('/api/v2/projects/%s/locales/%s/translations', $projectKey, $localeId), $params);
 
         if (!$this->hydrator) {
