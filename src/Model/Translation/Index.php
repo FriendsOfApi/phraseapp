@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Model\Translation;
 
 use FAPI\PhraseApp\Model\CreatableFromArray;
-use Traversable;
 
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
