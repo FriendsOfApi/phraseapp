@@ -48,12 +48,11 @@ class Key extends HttpApi
      * Search keys.
      *
      * @param string $projectKey
-     * @param string $localeId
      * @param array  $params
      *
      * @return mixed|ResponseInterface
      */
-    public function search(string $projectKey, string $localeId, array $params = [])
+    public function search(string $projectKey, array $params = [])
     {
         $q = '';
 
@@ -68,10 +67,6 @@ class Key extends HttpApi
         if (isset($params['ids'])) {
             $q .= 'ids:'.$params['ids'].' ';
         }
-
-        $params = [
-            'locale_id' => $localeId,
-        ];
 
         if (!empty($q)) {
             $params['q'] = $q;
