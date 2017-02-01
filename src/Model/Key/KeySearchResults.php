@@ -14,7 +14,7 @@ use FAPI\PhraseApp\Model\CreatableFromArray;
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class KeySearchResults implements CreatableFromArray, \IteratorAggregate
+final class KeySearchResults implements CreatableFromArray, \IteratorAggregate
 {
     /**
      * @var KeySearchResult[]

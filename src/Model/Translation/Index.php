@@ -14,7 +14,7 @@ use FAPI\PhraseApp\Model\CreatableFromArray;
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class Index implements CreatableFromArray, \IteratorAggregate
+final class Index implements CreatableFromArray, \IteratorAggregate
 {
     /**
      * @var Translation[]
