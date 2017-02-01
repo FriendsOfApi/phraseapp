@@ -25,7 +25,7 @@ class Key extends HttpApi
      * @param string $localeId
      * @param array  $params
      *
-     * @return mixed|ResponseInterface
+     * @return KeyCreated|ResponseInterface
      */
     public function create(string $projectKey, string $name, array $params = [])
     {
@@ -50,7 +50,7 @@ class Key extends HttpApi
      * @param string $projectKey
      * @param array  $params
      *
-     * @return mixed|ResponseInterface
+     * @return KeySearchResults|ResponseInterface
      */
     public function search(string $projectKey, array $params = [])
     {
@@ -96,6 +96,10 @@ class Key extends HttpApi
     public function delete(string $projectKey, string $keyId)
     {
         $response = $this->httpDelete(sprintf('/api/v2/projects/%s/keys/%s', $projectKey, $keyId));
+
+        if (!$this->hydrator) {
+            return $response;
+        }
 
         if ($response->getStatusCode() !== 204) {
             $this->handleErrors($response);

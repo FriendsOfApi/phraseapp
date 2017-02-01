@@ -28,7 +28,7 @@ class Upload extends HttpApi
      *
      * @throws Exception
      *
-     * @return string|ResponseInterface
+     * @return Uploaded|ResponseInterface
      */
     public function upload(string $projectKey, string $ext, string $filename, array $params)
     {
