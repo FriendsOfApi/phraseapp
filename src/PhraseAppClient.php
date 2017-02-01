@@ -56,7 +56,7 @@ final class PhraseAppClient
      * @param Hydrator|null          $hydrator
      * @param RequestBuilder|null    $requestBuilder
      *
-     * @return ApiClient
+     * @return PhraseAppClient
      */
     public static function configure(
         HttpClientConfigurator $httpClientConfigurator,
