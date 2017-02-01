@@ -9,7 +9,7 @@ use FAPI\PhraseApp\Model\CreatableFromArray;
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class Uploaded implements CreatableFromArray
+final class Uploaded implements CreatableFromArray
 {
     /**
      * @var string

@@ -14,7 +14,7 @@ use FAPI\PhraseApp\Model\CreatableFromArray;
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class KeySearchResult implements CreatableFromArray
+final class KeySearchResult implements CreatableFromArray
 {
     /**
      * @var string

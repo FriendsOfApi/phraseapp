@@ -14,7 +14,7 @@ use FAPI\PhraseApp\Model\CreatableFromArray;
 /**
  * @author Sascha-Oliver Prolic <saschaprolic@googlemail.com>
  */
-class TranslationUpdated implements CreatableFromArray
+final class TranslationUpdated implements CreatableFromArray
 {
     /**
      * @var string
