@@ -44,6 +44,7 @@ class Upload extends HttpApi
             ['name' => 'file', 'content' => file_get_contents($filename), 'filename' => basename($filename)],
             ['name' => 'file_format', 'content' => $ext],
             ['name' => 'locale_id', 'content' => $params['locale_id']],
+	        ['name' => 'update_translations', 'content' => $params['update_translations']]
         ];
 
         if (isset($params['tags'])) {

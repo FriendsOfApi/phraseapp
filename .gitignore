@@ -3,3 +3,6 @@
 /phpspec.yml
 /phpunit.xml
 /vendor/
+composer.phar
+/.idea/
+
