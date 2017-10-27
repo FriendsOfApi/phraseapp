@@ -46,7 +46,6 @@ class Upload extends HttpApi
             ['name' => 'locale_id', 'content' => $params['locale_id']],
         ];
 
-	    // Update Translations is not a mandatory API field
 	    if (isset($params['update_translations'])) {
 			$postData[] = ['name' => 'update_translations', 'content' => $params['update_translations']];
 	    }
