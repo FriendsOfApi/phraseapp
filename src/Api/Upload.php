@@ -46,9 +46,9 @@ class Upload extends HttpApi
             ['name' => 'locale_id', 'content' => $params['locale_id']],
         ];
 
-	    if (isset($params['update_translations'])) {
-			$postData[] = ['name' => 'update_translations', 'content' => $params['update_translations']];
-	    }
+        if (isset($params['update_translations'])) {
+            $postData[] = ['name' => 'update_translations', 'content' => $params['update_translations']];
+        }
 
         if (isset($params['tags'])) {
             $postData[] = ['name' => 'tags', 'content' => $params['tags']];
