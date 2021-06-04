@@ -60,6 +60,7 @@ abstract class HttpApi
      * @param array  $requestHeaders Request Headers
      *
      * @throws ClientExceptionInterface
+     *
      * @return ResponseInterface
      */
     protected function httpGet(string $path, array $params = [], array $requestHeaders = []): ResponseInterface
