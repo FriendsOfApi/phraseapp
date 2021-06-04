@@ -97,7 +97,7 @@ final class HttpClientConfigurator
     }
 
     /**
-     * @param Plugin $plugin
+     * @param Plugin ...$plugin
      *
      * @return HttpClientConfigurator
      */
@@ -111,7 +111,7 @@ final class HttpClientConfigurator
     }
 
     /**
-     * @param Plugin $plugin
+     * @param Plugin ...$plugin
      *
      * @return HttpClientConfigurator
      */

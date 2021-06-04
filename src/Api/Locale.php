@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace FAPI\PhraseApp\Api;
 
 use FAPI\PhraseApp\Exception;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -25,7 +26,8 @@ class Locale extends HttpApi
      * @param string $ext
      * @param array  $params
      *
-     * @throws Exception
+     * @throws ClientExceptionInterface
+     * @throws Exception\DomainException
      *
      * @return string|ResponseInterface
      */

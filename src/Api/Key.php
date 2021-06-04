@@ -9,8 +9,10 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Api;
 
+use FAPI\PhraseApp\Exception\DomainException;
 use FAPI\PhraseApp\Model\Key\KeyCreated;
 use FAPI\PhraseApp\Model\Key\KeySearchResults;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -22,8 +24,11 @@ class Key extends HttpApi
      * Create a new key.
      *
      * @param string $projectKey
-     * @param string $localeId
+     * @param string $name
      * @param array  $params
+     *
+     * @throws DomainException
+     * @throws ClientExceptionInterface
      *
      * @return KeyCreated|ResponseInterface
      */
@@ -49,6 +54,9 @@ class Key extends HttpApi
      *
      * @param string $projectKey
      * @param array  $params
+     *
+     * @throws ClientExceptionInterface
+     * @throws DomainException
      *
      * @return KeySearchResults|ResponseInterface
      */
@@ -90,6 +98,9 @@ class Key extends HttpApi
      *
      * @param string $projectKey
      * @param string $keyId
+     *
+     * @throws ClientExceptionInterface
+     * @throws DomainException
      *
      * @return bool|ResponseInterface
      */

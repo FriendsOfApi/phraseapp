@@ -15,6 +15,7 @@ use FAPI\PhraseApp\Hydrator\Hydrator;
 use FAPI\PhraseApp\Hydrator\NoopHydrator;
 use FAPI\PhraseApp\RequestBuilder;
 use Http\Client\HttpClient;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -58,11 +59,12 @@ abstract class HttpApi
      * @param array  $params         GET parameters
      * @param array  $requestHeaders Request Headers
      *
+     * @throws ClientExceptionInterface
      * @return ResponseInterface
      */
     protected function httpGet(string $path, array $params = [], array $requestHeaders = []): ResponseInterface
     {
-        if (count($params) > 0) {
+        if (empty($params)) {
             $path .= '?'.http_build_query($params);
         }
 
@@ -77,6 +79,8 @@ abstract class HttpApi
      * @param string $path           Request path
      * @param array  $params         POST parameters to be JSON encoded
      * @param array  $requestHeaders Request headers
+     *
+     * @throws ClientExceptionInterface
      *
      * @return ResponseInterface
      */
@@ -94,11 +98,13 @@ abstract class HttpApi
      * @param array|string $body           Request body
      * @param array        $requestHeaders Request headers
      *
+     * @throws ClientExceptionInterface
+     *
      * @return ResponseInterface
      */
     protected function httpPostRaw(string $path, $body, array $requestHeaders = []): ResponseInterface
     {
-        return $response = $this->httpClient->sendRequest(
+        return $this->httpClient->sendRequest(
             $this->requestBuilder->create('POST', $path, $requestHeaders, $body)
         );
     }
@@ -109,6 +115,8 @@ abstract class HttpApi
      * @param string $path           Request path
      * @param array  $params         POST parameters to be JSON encoded
      * @param array  $requestHeaders Request headers
+     *
+     * @throws ClientExceptionInterface
      *
      * @return ResponseInterface
      */
@@ -128,6 +136,8 @@ abstract class HttpApi
      * @param array  $params         POST parameters to be JSON encoded
      * @param array  $requestHeaders Request headers
      *
+     * @throws ClientExceptionInterface
+     *
      * @return ResponseInterface
      */
     protected function httpDelete(string $path, array $params = [], array $requestHeaders = []): ResponseInterface
@@ -146,13 +156,15 @@ abstract class HttpApi
      * @param array|string $body           Request body
      * @param array        $requestHeaders Request headers
      *
+     * @throws ClientExceptionInterface
+     *
      * @return ResponseInterface
      */
     protected function httpPatch(string $path, $body, array $requestHeaders = []): ResponseInterface
     {
         $requestHeaders['Content-Type'] = 'application/json';
 
-        return $response = $this->httpClient->sendRequest(
+        return $this->httpClient->sendRequest(
             $this->requestBuilder->create('PATCH', $path, $requestHeaders, json_encode($body))
         );
     }
