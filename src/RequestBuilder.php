@@ -31,8 +31,8 @@ final class RequestBuilder
     private $multipartStreamBuilder;
 
     /**
-     * @param RequestFactoryInterface|null         $requestFactory
-     * @param MultipartStreamBuilder|null $multipartStreamBuilder
+     * @param RequestFactoryInterface|null  $requestFactory
+     * @param MultipartStreamBuilder|null   $multipartStreamBuilder
      */
     public function __construct(
         RequestFactoryInterface $requestFactory = null,

@@ -57,8 +57,8 @@ final class HttpClientConfigurator
     private $token;
 
     /**
-     * @param string          $token
-     * @param HttpClient|null $httpClient
+     * @param string                   $token
+     * @param HttpClient|null          $httpClient
      * @param UriFactoryInterface|null $uriFactory
      */
     public function __construct(string $token, HttpClient $httpClient = null, UriFactoryInterface $uriFactory = null)
