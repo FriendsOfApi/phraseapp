@@ -13,9 +13,9 @@ use Http\Client\Common\Plugin;
 use Http\Client\Common\PluginClient;
 use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
-use Http\Discovery\UriFactoryDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\Authentication\BasicAuth;
-use Http\Message\UriFactory;
+use Psr\Http\Message\UriFactoryInterface;
 
 /**
  * Configure an HTTP client.
@@ -32,7 +32,7 @@ final class HttpClientConfigurator
     private $endpoint = 'https://api.phraseapp.com';
 
     /**
-     * @var UriFactory
+     * @var UriFactoryInterface
      */
     private $uriFactory;
 
@@ -59,13 +59,13 @@ final class HttpClientConfigurator
     /**
      * @param string          $token
      * @param HttpClient|null $httpClient
-     * @param UriFactory|null $uriFactory
+     * @param UriFactoryInterface|null $uriFactory
      */
-    public function __construct(string $token, HttpClient $httpClient = null, UriFactory $uriFactory = null)
+    public function __construct(string $token, HttpClient $httpClient = null, UriFactoryInterface $uriFactory = null)
     {
         $this->token = $token;
         $this->httpClient = $httpClient ?? HttpClientDiscovery::find();
-        $this->uriFactory = $uriFactory ?? UriFactoryDiscovery::find();
+        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUrlFactory();
     }
 
     /**
