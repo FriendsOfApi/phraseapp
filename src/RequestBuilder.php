@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp;
 
-use Http\Discovery\MessageFactoryDiscovery;
+use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Message\MultipartStream\MultipartStreamBuilder;
-use Http\Message\RequestFactory;
+use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -22,7 +22,7 @@ use Psr\Http\Message\RequestInterface;
 final class RequestBuilder
 {
     /**
-     * @var RequestFactory
+     * @var RequestFactoryInterface
      */
     private $requestFactory;
     /**
@@ -31,14 +31,14 @@ final class RequestBuilder
     private $multipartStreamBuilder;
 
     /**
-     * @param RequestFactory         $requestFactory
-     * @param MultipartStreamBuilder $multipartStreamBuilder
+     * @param RequestFactoryInterface|null $requestFactory
+     * @param MultipartStreamBuilder|null  $multipartStreamBuilder
      */
     public function __construct(
-        RequestFactory $requestFactory = null,
+        RequestFactoryInterface $requestFactory = null,
         MultipartStreamBuilder $multipartStreamBuilder = null
     ) {
-        $this->requestFactory = $requestFactory ?: MessageFactoryDiscovery::find();
+        $this->requestFactory = $requestFactory ?: Psr17FactoryDiscovery::findRequestFactory();
         $this->multipartStreamBuilder = $multipartStreamBuilder ?: new MultipartStreamBuilder();
     }
 
@@ -67,8 +67,7 @@ final class RequestBuilder
         foreach ($body as $item) {
             $name = $item['name'];
             $content = $item['content'];
-            unset($item['name']);
-            unset($item['content']);
+            unset($item['name'], $item['content']);
             $this->multipartStreamBuilder->addResource($name, $content, $item);
         }
         $multipartStream = $this->multipartStreamBuilder->build();

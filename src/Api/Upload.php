@@ -11,6 +11,7 @@ namespace FAPI\PhraseApp\Api;
 
 use FAPI\PhraseApp\Exception;
 use FAPI\PhraseApp\Model\Locale\Uploaded;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -26,7 +27,8 @@ class Upload extends HttpApi
      * @param string $filename
      * @param array  $params
      *
-     * @throws Exception
+     * @throws Exception\DomainException
+     * @throws ClientExceptionInterface
      *
      * @return Uploaded|ResponseInterface
      */

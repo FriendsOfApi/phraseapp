@@ -9,9 +9,11 @@ declare(strict_types=1);
 
 namespace FAPI\PhraseApp\Api;
 
+use FAPI\PhraseApp\Exception\DomainException;
 use FAPI\PhraseApp\Model\Translation\Index;
 use FAPI\PhraseApp\Model\Translation\TranslationCreated;
 use FAPI\PhraseApp\Model\Translation\TranslationUpdated;
+use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -25,6 +27,9 @@ class Translation extends HttpApi
      * @param string $projectKey
      * @param string $localeId
      * @param array  $params
+     *
+     * @throws ClientExceptionInterface
+     * @throws DomainException
      *
      * @return Index|ResponseInterface
      */
@@ -52,9 +57,13 @@ class Translation extends HttpApi
      * Create a translation.
      *
      * @param string $projectKey
+     * @param string $localeId
      * @param string $keyId
      * @param string $content
      * @param array  $params
+     *
+     * @throws ClientExceptionInterface
+     * @throws DomainException
      *
      * @return TranslationCreated|ResponseInterface
      */
@@ -85,6 +94,9 @@ class Translation extends HttpApi
      * @param string $content
      * @param array  $params
      *
+     * @throws ClientExceptionInterface
+     * @throws DomainException
+     *
      * @return TranslationUpdated|ResponseInterface
      */
     public function update(string $projectKey, string $translationId, string $content, array $params = [])
@@ -110,6 +122,9 @@ class Translation extends HttpApi
      * @param string $projectKey
      * @param string $keyId
      * @param array  $params
+     *
+     * @throws ClientExceptionInterface
+     * @throws DomainException
      *
      * @return Index|ResponseInterface
      */
